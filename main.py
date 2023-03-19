@@ -130,7 +130,92 @@ lbl_result.grid(row=0,column=0,columnspan=4)
 
 
 # third approach 
+btn_data = [
+    {
+        "text":"7",
+        "command":lambda:print(7)
+    },
+    {
+        "text":"8",
+        "command":lambda:print(8)
+    },
+    {
+        "text":"9",
+        "command":lambda:print(9)
+    },
+    {
+        "text":"+",
+        "command":lambda:print("+")
+    },
+    {
+        "text":"4",
+        "command":lambda:print(4)
+    },
+    {
+        "text":"5",
+        "command":lambda:print(5)
+    },
+    {
+        "text":"6",
+        "command":lambda:print(6)
+    },
+    {
+        "text":"-",
+        "command":lambda:print("-")
+    },
+    {
+        "text":"1",
+        "command":lambda:print(1)
+    },
+    {
+        "text":"2",
+        "command":lambda:print(2)
+    },
+    {
+        "text":"3",
+        "command":lambda:print(3)
+    },
+    {
+        "text":"*",
+        "command":lambda:print("*")
+    },
+    {
+        "text":".",
+        "command":lambda:print(".")
+    },
+    {
+        "text":"0",
+        "command":lambda:print(0)
+    },
+    {
+        "text":"C",
+        "command":lambda:print("C")
+    },
+    {
+        "text":"=",
+        "command":lambda:print("=")
+    },
+]
+btn_list = []
+for btn_key in btn_data:
+    btn = tkinter.Button(
+        master=window,
+        text=btn_key["text"],
+        command=btn_key["command"],
+        height=3,
+    )
+    btn_list.append(btn)
+for i,btn in enumerate(btn_list):
+    btn.grid(row=(i//4)+1,column=i%4,sticky=(E,W))
 
+#row
+#0,1,2,3 --> //4 = 0
+#4,5,6,7 --> //4 = 1
+#8,9,10,11 -->//4 = 2
+#12,13,14,15 -->//4 = 3
+
+#0,4,8,12 --> %4 = 0
+#1,5,9,13 --> %4 = 1
 
 
 window.mainloop()
