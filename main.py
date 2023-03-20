@@ -128,72 +128,116 @@ lbl_result.grid(row=0,column=0,columnspan=4)
 #     )
 #     btn_name.grid(row=btn_details["row"],column=btn_details["column"],sticky=(E,W))
 
+# first approach for handling the lbl conditions of the eval 
+# def set_result():
+#     lbl_result["text"]+="7"
+# def calc():
+#     result = lbl_result["text"]
+#     print(eval(result+"+5"))
+
+# def set_result(btn_text):
+#     operators = ["+","-","*","."]
+#     current = lbl_result["text"][-1]
+#     if current in operators and btn_text in operators and not current == btn_text:
+#         lbl_result["text"] = lbl_result["text"].removesuffix(btn_text)
+#         print("both operators")
+#     elif lbl_result["text"] == "0" and btn_text in operators:
+#         lbl_result["text"] = "0"
+#     else:
+#         print(current)
+#         if lbl_result["text"]=="0":
+#             lbl_result["text"] = ""
+#         elif current == btn_text and current in operators:
+#             lbl_result["text"] = lbl_result["text"].removesuffix(btn_text)
+#         lbl_result["text"] += btn_text
+
+# def calc_result():
+#     result = lbl_result["text"]
+#     lbl_result["text"] = str(eval(result))
+
+
+# second approach for handling the lbl conditions of the eval 
+def set_result(btn_text):
+    operators = ["+","-","*"]
+    current = lbl_result["text"]
+    if lbl_result["text"] == "0":
+        lbl_result["text"] = btn_text
+    elif btn_text == "=":
+        lbl_result["text"] = str(eval(lbl_result["text"]))
+    else:
+        if btn_text in operators :
+            if current[-1] in operators:
+                lbl_result["text"] = lbl_result["text"][:-1]+btn_text
+            else:
+                lbl_result["text"] += btn_text
+        else:
+            lbl_result["text"] +=btn_text
 
 # third approach 
 btn_data = [
     {
         "text":"7",
-        "command":lambda:print(7)
+        "command":lambda:set_result("7"),
     },
     {
         "text":"8",
-        "command":lambda:print(8)
+        "command":lambda:set_result("8"),
     },
     {
         "text":"9",
-        "command":lambda:print(9)
+        "command":lambda:set_result("9"),
     },
     {
         "text":"+",
-        "command":lambda:print("+")
+        "command":lambda:set_result("+"),
     },
     {
         "text":"4",
-        "command":lambda:print(4)
+        "command":lambda:set_result("4"),
     },
     {
         "text":"5",
-        "command":lambda:print(5)
+        "command":lambda:set_result("5"),
     },
     {
         "text":"6",
-        "command":lambda:print(6)
+        "command":lambda:set_result("6"),
     },
     {
         "text":"-",
-        "command":lambda:print("-")
+        "command":lambda:set_result("-"),
     },
     {
         "text":"1",
-        "command":lambda:print(1)
+        "command":lambda:set_result("1"),
     },
     {
         "text":"2",
-        "command":lambda:print(2)
+        "command":lambda:set_result("2"),
     },
     {
         "text":"3",
-        "command":lambda:print(3)
+        "command":lambda:set_result("3"),
     },
     {
         "text":"*",
-        "command":lambda:print("*")
+        "command":lambda:set_result("*"),
     },
     {
         "text":".",
-        "command":lambda:print(".")
+        "command":lambda:set_result("."),
     },
     {
         "text":"0",
-        "command":lambda:print(0)
+        "command":lambda:set_result("0"),
     },
     {
         "text":"C",
-        "command":lambda:print("C")
+        "command":lambda:set_result("C"),
     },
     {
         "text":"=",
-        "command":lambda:print("=")
+        "command":lambda:set_result("="),
     },
 ]
 btn_list = []
@@ -219,5 +263,3 @@ for i,btn in enumerate(btn_list):
 
 
 window.mainloop()
-
-
