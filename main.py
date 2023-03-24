@@ -1,4 +1,5 @@
 import tkinter
+import decimal
 from tkinter import E,W,N,S
 
 window = tkinter.Tk()
@@ -157,6 +158,15 @@ lbl_result.grid(row=0,column=0,columnspan=4)
 
 
 # second approach for handling the lbl conditions of the eval 
+
+def set_decimal(num,precision=3):
+    """set precision -> num(1/7) = 0.143 -> 3 floating point
+    default is to 3 places"""
+    decimal.getcontext().prec = precision
+    return decimal.Decimal(num)
+
+
+
 def is_last_number_decimal(text):
     for char in text[::-1]:
         if char == ".":
