@@ -157,6 +157,18 @@ lbl_result.grid(row=0,column=0,columnspan=4)
 
 
 # second approach for handling the lbl conditions of the eval 
+def is_last_number_decimal(text):
+    for char in text[::-1]:
+        if char == ".":
+            return True
+        elif char in ["+","-","*"]:
+            return False
+    return False
+
+
+
+
+
 def set_result(btn_text):
     operators = ["+","-","*"]
     current = lbl_result["text"]
@@ -165,10 +177,10 @@ def set_result(btn_text):
     elif btn_text == "=":
         lbl_result["text"] = str(eval(lbl_result["text"]))
     else:
-        if btn_text in operators :
-            if current[-1] in operators:
-                lbl_result["text"] = lbl_result["text"][:-1]+btn_text
-            else:
+        if btn_text in operators and current[-1] in operators:
+            lbl_result["text"] = lbl_result["text"][:-1]+btn_text
+        elif btn_text == ".":
+            if not is_last_number_decimal(current):                
                 lbl_result["text"] += btn_text
         else:
             lbl_result["text"] +=btn_text
