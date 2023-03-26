@@ -166,6 +166,23 @@ def set_decimal(num,precision=3):
     return decimal.Decimal(num)
 
 
+def convert_to_decimal(text):
+    arithmetic = str()
+    index = 0     #123+456
+    i = 0
+    for char in text:
+        if char in ["+","-","*"]:
+            arithmetic += str(decimal.Decimal(text[index:i]))
+            arithmetic+=text[i]
+            index = i+1
+        elif char == text[-1]:
+            arithmetic+= str(decimal.Decimal(text[index:i+1]))
+        i+=1
+        print(i)
+        print(arithmetic)
+        print("index",index)
+    return arithmetic
+
 
 def is_last_number_decimal(text):
     for char in text[::-1]:
